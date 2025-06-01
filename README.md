@@ -60,16 +60,17 @@ cd Polichess
 ```
 ### 2. Install dependencies
 
-# Backend
-```bash
-cd back
-npm install
-```
 # Frontend
 ```bash
 cd ../front
 npm install
 ```
+# Backend
+```bash
+cd back
+npm install
+```
+
 
 ### 3. Add environment information
 Inside the back folder, modify the environment infomation of the files ".env.develompent" and ".env.test":

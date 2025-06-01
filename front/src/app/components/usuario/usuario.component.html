@@ -1,0 +1,10 @@
+<div class="usuario-card" (click)="irADetalle()" style="cursor: pointer;">
+  <img [src]="'http://localhost:3000' + usuario.foto_perfil" alt="Foto perfil" class="foto" />
+  <div class="info">
+    <h3>{{ usuario.nombre }} {{ usuario.apellido }}</h3>
+    <p><strong>{{ '@' + usuario.nombre_usuario }}</strong></p>
+    <p>ELO Estándar: {{ usuario.elo_estandar }}</p>
+    <p>ELO Rápido: {{ usuario.elo_rapido }}</p>
+    <p>ELO Blitz: {{ usuario.elo_blitz }}</p>
+  </div>
+</div>

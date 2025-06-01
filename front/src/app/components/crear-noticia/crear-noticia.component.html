@@ -1,0 +1,30 @@
+<div class="recuadro-blanco recuadro-no-scroll">
+  <div class="contenedor-imagen-izquierda">
+    <div class="contenedor-atras" (click)="volver()">
+      <span>&#8592; Atrás</span>
+    </div>
+
+    <img class="imagen-izquierda" *ngIf="!previewUrl" alt="Imagen de perfil" src="noticiadefault.jpg">
+    <img class="imagen-izquierda" id="vista-previa" *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa de la imagen">
+    <div class="contenedor-titulo contenedor-nombre-apellido">
+      <h2 class="titulo">Crear noticia</h2>
+    </div>
+
+    <div class="contenedor-titulo contenedor-nombre-apellido">
+      <label id="cambiar-imagen" for="fileInput" class="custom-file-upload">Cambiar imagen</label>
+      <a *ngIf="previewUrl">
+        <img id="borrar-seleccion" alt="Borrar selección" src="borrar.png" *ngIf="previewUrl" (click)="borrarImagen()">
+      </a>
+      <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+    </div>
+  </div>
+  <form class="contenedor-estadisticas contenedor-estadisticas-padding" (submit)="crearNoticia($event)">
+    <input id="titulo" type="text" name="titulo" placeholder="Título" maxlength="150" required style="width: calc(100% - 30px);">
+    <input id="copete" type="text" name="copete" placeholder="Copete" maxlength="255" required style="width: calc(100% - 30px);">
+    <textarea id="cuerpo" name="cuerpo" placeholder="Cuerpo" rows="10" maxlength="16383" required [limitLineBreak]="maxLineas" style="width: calc(100% - 30px);"></textarea>
+  
+    <div id="contenedor-crear">
+      <button id="crear-noticia" type="submit" class="ver-mas">CREAR NOTICIA</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,125 @@
+.detalle-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 10rem;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  background-color: #fdfdfd;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-grid div {
+  background: #f3f3f3;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.acciones {
+  text-align: center;
+}
+
+.boton-volver {
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.boton-volver:hover {
+  background-color: #1c5d85;
+}.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.titulo-torneo {
+  margin: 0;
+  font-size: 2rem;
+  color: #2c3e50;
+  flex-grow: 1;
+}
+
+.contenedor-boton-inscripcion {
+  flex-shrink: 0;
+}
+
+.boton-inscribirse {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.boton-inscribirse:hover {
+  background-color: #218838;
+}
+
+.jugadores-inscritos {
+  margin: 4rem auto 2rem auto;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  text-align: center;
+}
+
+.jugadores-inscritos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.jugadores-inscritos li {
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jugadores-inscritos li:last-child {
+  border-bottom: none;
+}
+
+.jugador-link {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.2s;
+}
+
+.jugador-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.mensaje-inscripcion {
+  color: green;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}

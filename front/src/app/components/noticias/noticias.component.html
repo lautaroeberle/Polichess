@@ -1,0 +1,28 @@
+<div id="contenedor-superior">
+  <div class="recuadro-blanco contenedor-busqueda">
+    <label for="buscar-noticia">Buscar noticia: </label>
+    <input id="buscarNoticia" type="text" placeholder="Título de la noticia..." (input)="buscarNoticias()">
+    <span *ngIf="busqueda !== ''" (click)="limpiarBusqueda()">&times;</span>
+  </div>
+  <div *ngIf="loginService.isAdmin()" id="crear-noticia" class="recuadro-blanco">
+    <img src="admin.png" alt="Icono admin">
+    <button [routerLink]="['/crearnoticia']">Crear noticia</button>
+  </div>
+</div>
+
+<section id="noticias" class="recuadro-blanco" [ngClass]="noticias.length > 0 ? 'cuadricula' : 'mensaje-centrado'">
+  <app-carta-noticia *ngFor="let noticia of noticias" [noticia]="noticia" [routerLink]="[noticia.id]"></app-carta-noticia>
+  <h3 *ngIf="noticias.length === 0">No se encontraron coincidencias</h3>
+</section>
+
+<div class="recuadro-blanco contenedor-paginacion">
+  <div class="contenedor-flechas contenedor-flechas-izquierda">
+    <button class="flecha-izquierda" (click)="primeraPagina()" [disabled]="paginaActual === 1">&#9664;&#9664;</button>
+    <button class="flecha-izquierda" (click)="paginaAnterior()" [disabled]="paginaActual === 1">&#9664;</button>
+  </div>
+  <span>Página {{ paginas > 0 ? paginaActual : 0 }} de {{ paginas }}</span>
+  <div class="contenedor-flechas contenedor-flechas-derecha">
+    <button class="flecha-derecha" (click)="paginaSiguiente()" [disabled]="paginaActual === paginas || paginas === 0">&#9654;</button>
+    <button class="flecha-derecha" (click)="ultimaPagina()" [disabled]="paginaActual === paginas || paginas === 0">&#9654;&#9654;</button>
+  </div>
+</div>

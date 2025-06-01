@@ -1,0 +1,63 @@
+.calendario-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.dia {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-height: 80px;
+  text-align: left;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.dia.nombre {
+  font-weight: bold;
+  background-color: #e0e0e0;
+  text-align: center;
+}
+
+.dia.vacio {
+  background: transparent;
+  pointer-events: none;
+}
+
+.numero {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.torneo a {
+  display: block;
+  color: #0a58ca;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.torneo a:hover {
+  text-decoration: underline;
+}

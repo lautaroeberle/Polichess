@@ -1,0 +1,10 @@
+<a [routerLink]="['/torneos', torneo.id]" class="torneo-card" style="text-decoration: none; color: inherit;">
+  <div class="icono-torneo">🏆</div>
+  <div class="info">
+    <h3>{{ torneo.nombre }}</h3>
+    <p><strong>Fecha:</strong> {{ torneo.fecha_hora_inicio | date:'shortDate' }}</p>
+    <p><strong>Ritmo:</strong> {{ torneo.ritmo }}</p>
+    
+    
+  </div>
+

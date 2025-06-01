@@ -1,0 +1,181 @@
+#noticia {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+#noticia h1 {
+  font-family: var(--fuente-titulos-2);
+  font-size: 50px;
+}
+
+#noticia h2 {
+  font-family: var(--fuente-subtitulos);
+  font-weight: 300;
+}
+
+#enlace-autor {
+  align-items: center;
+  border-bottom: 1px solid var(--texto-suave);
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 15px 0;
+}
+
+#enlace-autor img {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  height: 50px;
+  object-fit: cover;
+}
+
+#enlace-autor img:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+#enlace-autor h4 {
+  font-family: var(--fuente-texto);
+  font-size: 17.5px;
+  font-weight: 300;
+}
+
+#enlace-autor span {
+  font-weight: normal;
+}
+
+#enlace-autor span:hover {
+  color: var(--azul-poli);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#fechas {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+#fechas span {
+  color: var(--texto-suave);
+  font-family: var(--fuente-texto);
+}
+
+.fecha {
+  font-size: 12.5px;
+}
+
+#separador {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+#imagen-noticia {
+  border-radius: 7.5px;
+  width: 100%;
+}
+
+#cuerpo-noticia {
+  font-family: var(--fuente-texto);
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-top: 25px;
+  white-space: pre-line;
+}
+
+#contenedor-comentarios {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+#contenedor-total-comentarios {
+  align-items: end;
+  display: flex;
+  gap: 25px;
+}
+
+#titulo-comentarios {
+  font-family: var(--fuente-titulos);
+  font-size: 40px;
+}
+
+#total {
+  bottom: 3px;
+  font-family: var(--fuente-texto);
+  font-size: 35px;
+  font-weight: 300;
+  position: relative;
+}
+
+#agregar-comentario {
+  align-items: center;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 10px;
+  margin-top: 35px;
+}
+
+#agregar-comentario img {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  height: 75px;
+  object-fit: cover;
+}
+
+#agregar-comentario textarea {
+  height: 42px;
+  overflow-y: auto;
+  resize: none;
+  width: 100%;
+}
+
+#agregar-comentario textarea:focus {
+  outline: none;
+}
+
+#contenedor-acciones {
+  align-items: center;
+  border-bottom: 1px solid var(--texto-suave);
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  padding-bottom: 25px;
+}
+
+#contenedor-acciones button {
+  border: 1px solid var(--azul-poli);
+  border-radius: 7.5px;
+  font-family: var(--fuente-botones);
+  font-size: 15px;
+  padding: 10px 12.5px;
+}
+
+#contenedor-acciones button:disabled {
+  background-color: var(--azul-poli-deshabilitado);
+  border-color: var(--azul-poli-deshabilitado);
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+#boton-comentar {
+  background-color: var(--azul-poli);
+  color: white;
+}
+
+#boton-comentar:hover {
+  background-color: var(--azul-poli-hover);
+  color: var(--amarillo-poli);
+  cursor: pointer;
+}
+
+#comentarios {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 25px;
+}

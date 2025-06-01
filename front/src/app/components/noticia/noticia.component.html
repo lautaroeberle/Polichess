@@ -1,0 +1,45 @@
+<div id="noticia" class="recuadro-blanco">
+  <div class="contenedor-atras" (click)="volver()">
+    <span>&#8592; Atrás</span>
+  </div>
+
+  <h1>{{ noticia?.titulo }}</h1>
+  <h2>{{ noticia?.copete }}</h2>
+
+  <a id="enlace-autor">
+    <img [src]="'http://localhost:3000'+autor?.foto_perfil" alt="Foto de perfil del autor">
+    <h4>Por <span>{{ autor?.nombre }} {{ autor?.apellido }}</span></h4>
+  </a>
+
+  <div id="fechas">
+    <span class="fecha">Publicado: {{ fechaPublicacion }}</span>
+    <span id="separador" *ngIf="fechaPublicacion !== fechaActualizacion">|</span>
+    <span class="fecha" *ngIf="fechaPublicacion !== fechaActualizacion">Actualizado: {{ fechaActualizacion }}</span>
+  </div>
+
+  <img id="imagen-noticia" [src]="'http://localhost:3000'+noticia?.imagen" alt="Imagen de la noticia">
+  <div id="cuerpo-noticia">{{ noticia?.cuerpo }}</div>
+</div>
+
+<div id="contenedor-comentarios" class="recuadro-blanco">
+  <div id="contenedor-total-comentarios">
+    <h2 id="titulo-comentarios">Comentarios</h2>
+    <h2 id="total">{{ totalComentarios }}</h2>
+  </div>
+  
+  <div id="agregar-comentario">
+    <img *ngIf="!loginService.isAuthenticated()" [src]="'http://localhost:3000/polichess/imagenes/fotoperfildefault.png'" alt="Foto de perfil predeterminada">
+    <textarea #contenidofalso class="input-predeterminado" *ngIf="!loginService.isAuthenticated()" placeholder="Agregá un comentario..." (click)="toggleLogin(contenidofalso)" (keydown)="bloquearInput($event)" (dragover)="bloquearInput($event)" (drop)="bloquearInput($event)"></textarea>
+    <img *ngIf="loginService.isAuthenticated()" [src]="'http://localhost:3000'+authService.getUsuario().foto_perfil" alt="Foto de perfil del usuario">
+    <textarea id="contenido" #contenido class="input-predeterminado" *ngIf="loginService.isAuthenticated()" placeholder="Agregá un comentario como @{{ authService.getUsuario()!.nombre_usuario }}..." (input)="validarContenido(contenido.value)" [limitLineBreak]="maxLineas"></textarea>
+  </div>
+  <div id="contenedor-acciones">
+    <button id="boton-comentar" (click)="comentar()" [disabled]="!loginService.isAuthenticated() || contenidoInvalido">Comentar</button>
+    <button class="boton-cancelar" (click)="limpiarContenido()" [disabled]="!loginService.isAuthenticated() || contenidoInvalido">Cancelar</button>
+  </div>
+  
+  <section id="comentarios">
+    <app-comentario *ngFor="let comentario of comentarios" [comentario]="comentario"></app-comentario>
+  </section>
+  
+</div>

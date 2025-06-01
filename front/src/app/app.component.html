@@ -1,0 +1,114 @@
+<header>
+  <nav id="navbar-principal">
+
+    <div id="contenedor-tres-lineas">
+      <a (mouseenter)="cursorEncimaTresLineas = true" (mouseleave)="cursorEncimaTresLineas = false" (click)="tresLineas = !tresLineas" [class.tres-lineas-activo]="tresLineas">
+        <img alt="Menú cerrado" class="icono-tres-lineas" src="iconotreslineas.png" *ngIf="!cursorEncimaTresLineas && !tresLineas">
+        <img alt="Menú abierto" class="icono-tres-lineas" src="iconotreslineashover.png" *ngIf="cursorEncimaTresLineas || tresLineas">
+      </a>
+    </div>
+
+    <div id="contenedor-logo-navbar">
+      <a [routerLink]="['/']">
+        <img alt="Logo del navbar" id="logo-navbar" src="logonavbar.png" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+      </a>
+    </div>
+
+    <div id="contenedor-secciones">
+      <!-- CAMBIAR CADA SECCIÓN CON CADA COMPONENTE CUANDO SE HAGAN -->
+      <a [routerLink]="['noticias']">NOTICIAS</a>
+      <a [routerLink]="['usuarios']">JUGADORES</a>
+      <a [routerLink]="['torneos']">TORNEOS</a>
+      <a [routerLink]="['calendario']">CALENDARIO</a>
+    </div>
+
+    <div class="contenedor-login">
+      <a *ngIf="!loginService.isAuthenticated()" (click)="toggleVentanaLoginRegistro(false)" (mouseenter)="cursorEncimaLogin = true" (mouseleave)="cursorEncimaLogin = false">
+        <div class="contenedor-icono-login">
+          <img alt="Icono predeterminado" class="icono-login" src="iconologin.png" *ngIf="!cursorEncimaLogin" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+          <img alt="Icono predeterminado seleccionado" class="icono-login" src="iconologinhover.png" *ngIf="cursorEncimaLogin" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+        </div>
+
+        <span id="texto-login" *ngIf="!navbarAchicado">Iniciar sesión</span>
+      </a>
+
+      <a *ngIf="loginService.isAuthenticated()" (click)="togglePerfil()" (mouseenter)="cursorEncimaLogin = true" (mouseleave)="cursorEncimaLogin = false">
+        <div class="contenedor-icono-login">
+          <img alt="Foto de perfil default" class="icono-login" src="iconologin.png" *ngIf="!cursorEncimaLogin && authService.getUsuario()?.foto_perfil === '/polichess/imagenes/fotoperfildefault.png'" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+          <img alt="Foto de perfil seleccionada" class="icono-login" src="iconologinhover.png" *ngIf="cursorEncimaLogin && authService.getUsuario()?.foto_perfil === '/polichess/imagenes/fotoperfildefault.png'" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+          <img alt="Foto de perfil" class="icono-login" [src]="'http://localhost:3000'+authService.getUsuario()?.foto_perfil" *ngIf="authService.getUsuario()?.foto_perfil !== '/polichess/imagenes/fotoperfildefault.png'" [ngClass]="navbarAchicado ? 'achicado' : 'no-achicado'">
+        </div>
+        <span id="texto-login" *ngIf="!navbarAchicado">Mi perfil</span>
+      </a>
+    </div>
+
+  </nav>
+</header>
+
+<div id="fondo-sombreado" *ngIf="ventanaLoginRegistro || tresLineas" [ngClass]="ventanaLoginRegistro ? 'sombreado' : 'no-sombreado'"></div>
+
+<div id="tres-lineas" class="contenedor-secciones-desplegable" *ngIf="tresLineas" [ngClass]="navbarAchicado ? 'elevado' : 'no-elevado'">
+  <!-- CAMBIAR CADA SECCIÓN CON CADA COMPONENTE CUANDO SE HAGAN -->
+  <a (click)="toggleTresLineas()" [routerLink]="['noticias']">NOTICIAS</a>
+  <a (click)="toggleTresLineas()" [routerLink]="['']">RANKING</a>
+  <a (click)="toggleTresLineas()" [routerLink]="['']">TORNEOS</a>
+  <a (click)="toggleTresLineas()" [routerLink]="['']">CALENDARIO</a>
+</div>
+
+<div id="ventana-login-registro" *ngIf="ventanaLoginRegistro">
+  <div id="seccion-superior">
+    <div id="contenedor-titulo">
+      <h3 *ngIf="!registro && !logout">Inicio de sesión</h3>
+      <h3 *ngIf="registro && !logout">Registro</h3>
+      <h3 *ngIf="logout">Cerrar sesión</h3>
+    </div>
+
+    <div id="contenedor-cerrar">
+      <a (mouseenter)="cursorEncimaCerrar = true" (click)="toggleVentanaLoginRegistro(false)" (mouseleave)="cursorEncimaCerrar = false">
+        <img alt="Cerrar" class="icono-cerrar" src="iconocerrar.png" *ngIf="!cursorEncimaCerrar">
+        <img alt="Cerrar seleccionado" class="icono-cerrar" src="iconocerrarhover.png" *ngIf="cursorEncimaCerrar">
+      </a>
+    </div>
+  </div>
+
+  <form class="formulario" (submit)="login($event, ['usuario1', 'contrasena1'], true)" *ngIf="!registro && !logout">
+    <input type="text" id="usuario1" name="usuario" placeholder="Nombre de usuario" required>
+    <input type="password" id="contrasena1" name="contrasena" placeholder="Contraseña" required>
+
+    <p>¿No tenés cuenta? <span class="texto-intercambiar" (click)="toggleRegistro()">Registrate</span></p>
+
+    <button type="submit">INICIAR SESIÓN</button>
+  </form>
+
+  <form class="formulario" (submit)="registrarse($event)" *ngIf="registro && !logout">
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+    <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+    <input type="text" id="usuario2" name="usuario" placeholder="Nombre de usuario" required>
+    <input type="password" id="contrasena2" name="contrasena" placeholder="Contraseña" required>
+    <input type="password" id="contrasena3" name="contrasena" placeholder="Confirmar contraseña" required>
+
+    <p>¿Ya tenés cuenta? <span class="texto-intercambiar" (click)="toggleRegistro()">Iniciá sesión</span></p>
+
+    <button type="submit">REGISTRARSE</button>
+  </form>
+
+  <form class="formulario" (submit)="loginService.logout(); authService.logout()" *ngIf="logout">
+    <p>¿Estás seguro de que querés cerrar sesión?</p>
+
+    <div id="contenedor-cerrar-sesion">
+      <button id="cerrar-sesion" type="submit">CERRAR SESIÓN</button>
+      <button type="button" (click)="toggleVentanaLoginRegistro(false)">Cancelar</button>
+    </div>
+    
+  </form>  
+</div>
+
+<div id="contenedor-desplegable-perfil" class="contenedor-secciones-desplegable" *ngIf="perfil" [ngClass]="navbarAchicado ? 'elevado' : 'no-elevado'">
+  <!-- CAMBIAR CADA SECCIÓN CON CADA COMPONENTE CUANDO SE HAGAN -->
+  <a (click)="togglePerfil()" [routerLink]="['perfil']">Ver mi perfil</a>
+  <a (click)="togglePerfil(); toggleVentanaLoginRegistro(true)" [ngStyle]="{ cursor: 'pointer' }">Cerrar sesión</a>
+</div>
+
+<div id="contenedor-principal">
+  <router-outlet></router-outlet>
+</div>

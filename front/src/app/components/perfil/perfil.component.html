@@ -1,0 +1,111 @@
+<div class="recuadro-blanco recuadro-no-scroll">
+  <div class="contenedor-imagen-izquierda">
+    <div class="contenedor-atras" (click)="volver()">
+      <span>&#8592; Atrás</span>
+    </div>
+    
+    <img class="imagen-izquierda" *ngIf="!previewUrl" alt="Imagen de perfil" [src]="'http://localhost:3000' + authService.getUsuario()?.foto_perfil">
+    <img class="imagen-izquierda" id="vista-previa" *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa de la imagen">
+    <div *ngIf="!editar" class="contenedor-titulo contenedor-nombre-apellido">
+      <h2 class="titulo">{{ authService.getUsuario()!.nombre }} {{ authService.getUsuario().apellido }}</h2>
+      <img alt="Icono admin" src="admin.png" *ngIf="loginService.isAdmin()">
+    </div>
+
+    <div *ngIf="editar" class="contenedor-titulo contenedor-nombre-apellido">
+      <label id="cambiar-imagen" for="fileInput" class="custom-file-upload">Cambiar foto de perfil</label>
+      <a *ngIf="previewUrl">
+        <img id="borrar-seleccion" alt="Borrar selección" src="borrar.png" *ngIf="previewUrl" (click)="borrarImagen()">
+      </a>
+      <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+    </div>
+    
+    <h3 *ngIf="!editar" class="nombre-usuario">&#64;{{ authService.getUsuario()!.nombre_usuario }}</h3>
+    <div *ngIf="!editar && !eliminar" class="contenedor-botones">
+      <button class="editar" (click)="toggleEditar()">Editar perfil</button>
+      <button class="eliminar" (click)="toggleEliminar()">Eliminar perfil</button>
+    </div>
+  </div>
+  <div *ngIf="!editar" class="contenedor-estadisticas contenedor-estadisticas-padding">
+    <h3>Fecha de nacimiento (año-mes-día): <span *ngIf="authService.getUsuario()!.fecha_nacimiento">{{ authService.getUsuario()!.fecha_nacimiento }}</span><span *ngIf="!authService.getUsuario()!.fecha_nacimiento">No especificada</span></h3>
+    <h3>Elo estándar: <span>{{ this.eloEstandar }}</span></h3>
+    <h3>Elo rápido: <span>{{ this.eloEstandar }}</span></h3>
+    <h3>Elo blitz: <span>{{ this.eloEstandar }}</span></h3>
+  </div>
+
+  <form *ngIf="editar" (submit)="toggleConfirmarEdicion()" id="editar-perfil" class="contenedor-estadisticas contenedor-estadisticas-padding">
+    <div class="contenedor-en-linea">
+      <div class="contenedor-en-linea">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" [(ngModel)]="nombre" required>
+      </div>
+
+      <div class="contenedor-en-linea">
+        <label for="apellido">Apellido: </label>
+        <input type="text" name="apellido" [(ngModel)]="apellido" required>
+      </div>
+    </div>
+
+    <label for="nombre_usuario">Nombre de usuario: </label>
+    <input type="text" name="nombre_usuario" [(ngModel)]="nombre_usuario" required>
+
+    <label for="fecha_nacimiento">Fecha de nacimiento (día-mes-año):</label>
+    <input type="date" name="fecha_nacimiento" [(ngModel)]="fecha_nacimiento" required>
+    
+    <label for="contrasena_hash">Nueva contraseña (dejar vacío para mantener actual): </label>
+    <input id="nueva-contrasena" type="password" name="contrasena_hash" required>
+    
+    <div id="contenedor-botones" class="contenedor-botones-en-linea">
+      <button class="ver-mas" type="submit" style="box-shadow: none;">Guardar cambios</button>
+      <button class="ver-mas" type="button" (click)="toggleEditar(); borrarImagen()" style="box-shadow: none;">Cancelar</button>
+    </div>
+    
+  </form>
+</div>
+
+<div id="ventana-popup-eliminar" class="ventana-popup" *ngIf="eliminar">
+  <div class="ventana-popup-seccion-superior">
+    <div class="contenedor-titulo-popup">
+      <h3>Eliminar perfil</h3>
+    </div>
+    <div class="contenedor-cerrar">
+      <a (mouseenter)="cursorEncimaCerrar = true" (mouseleave)="cursorEncimaCerrar = false" (click)="toggleEliminar()">
+        <img alt="Cerrar" class="icono-cerrar" src="iconocerrar.png" *ngIf="!cursorEncimaCerrar">
+        <img alt="Cerrar seleccionado" class="icono-cerrar" src="iconocerrarhover.png" *ngIf="cursorEncimaCerrar">
+      </a>
+    </div>
+  </div>
+  <div class="ventana-popup-seccion-inferior">
+    <p>¿Seguro que querés eliminar tu perfil?</p>
+    <div class="contenedor-botones-en-linea">
+      <button id="boton-eliminar" class="boton-rojo" (click)="toggleConfirmarEdicion()">ELIMINAR</button>
+      <button id="boton-cancelar" class="boton-normal" (click)="toggleEliminar()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div id="ventana-popup-confirmar" class="ventana-popup" *ngIf="confirmarEdicion">
+  <div class="ventana-popup-seccion-superior">
+    <div class="contenedor-titulo-popup">
+      <h3 *ngIf="editar">Confirmar edición</h3>
+      <h3 *ngIf="eliminar">Confirmar eliminación</h3>
+    </div>
+    <div class="contenedor-cerrar">
+      <a (mouseenter)="cursorEncimaCerrar = true" (mouseleave)="cursorEncimaCerrar = false" (click)="toggleConfirmarEdicion()">
+        <img alt="Cerrar" class="icono-cerrar" src="iconocerrar.png" *ngIf="!cursorEncimaCerrar">
+        <img alt="Cerrar seleccionado" class="icono-cerrar" src="iconocerrarhover.png" *ngIf="cursorEncimaCerrar">
+      </a>
+    </div>
+  </div>
+  <form class="ventana-popup-seccion-inferior">
+    <p *ngIf="editar" style="text-align: center;">Por favor ingresá tu contraseña actual para confirmar los cambios:</p>
+    <p *ngIf="eliminar">Por favor ingresá tu contraseña para confirmar:</p>
+    <input id="contrasena" type="password" name="contrasena" required>
+    
+    <div class="contenedor-botones-en-linea">
+      <button id="boton-eliminar" class="boton-normal" (click)="compararContrasenas()">Confirmar</button>
+      <button id="boton-cancelar" class="boton-normal" (click)="toggleConfirmarEdicion(); toggleEliminar();">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="confirmarEdicion || eliminar" class="fondo-sombreado"></div>

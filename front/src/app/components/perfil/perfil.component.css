@@ -1,0 +1,48 @@
+.contenedor-titulo label {
+  text-align: center;
+}
+
+.contenedor-titulo a {
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px 6.5px 4.5px 6.5px;
+}
+
+.contenedor-titulo a:hover {
+  background-color: rgb(200, 0, 0);
+  cursor: pointer;
+}
+
+#borrar-seleccion {
+  z-index: 1000;
+}
+
+.contenedor-en-linea {
+  justify-content: space-around;
+}
+
+.contenedor-estadisticas {
+  gap: 15px;
+}
+
+#contenedor-botones {
+  justify-content: center;
+  margin-top: 25px;
+}
+
+#cambiar-imagen {
+  color: var(--azul-poli);
+  cursor: pointer;
+  font-family: var(--fuente-texto);
+  font-size: 25px;
+}
+
+#cambiar-imagen:hover {
+  text-decoration: underline;
+}
+
+@media(max-width: 799px) {
+  #editar-perfil {
+    gap: 7.5px;
+  }
+}

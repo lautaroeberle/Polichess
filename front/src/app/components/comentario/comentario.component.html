@@ -1,0 +1,54 @@
+<div id="comentario">
+  <img class="foto-perfil-usuario" *ngIf="comentario?.usuario_id !== null" [src]="'http://localhost:3000'+usuario?.foto_perfil" alt="Foto de perfil del usuario">
+  <img class="foto-perfil-usuario" *ngIf="comentario?.usuario_id === null" [src]="'http://localhost:3000/polichess/imagenes/fotoperfildefault.png'" alt="Foto de perfil predeterminada">
+
+  <div id="detalles">
+    <div id="contenedor-nombre">
+      <h4 class="nombre" *ngIf="comentario?.usuario_id !== null && comentario?.usuario_id !== loginService.getUsuarioId()">{{ usuario?.nombre }} {{ usuario?.apellido }}</h4>
+      <h4 class="nombre" *ngIf="comentario?.usuario_id === null">Usuario eliminado</h4>
+      <h4 id="vos" class="nombre" *ngIf="comentario?.usuario_id !== null && comentario?.usuario_id === loginService.getUsuarioId()">Vos</h4>
+      <img src="admin.png" alt="Icono administrador" *ngIf="usuario?.administrador">
+      <div *ngIf="!editando" id="fechas">
+        <span>Publicado: {{ fechaPublicacion }}</span>
+        <span *ngIf="fechaPublicacion !== fechaActualizacion">| Actualizado: {{ fechaActualizacion }}</span>
+      </div>
+    </div>
+
+    <div *ngIf="!editando" id="contenido-comentario" [ngClass]="{ 'largo': esLargo() && !expandido }">{{ comentario?.contenido }}</div>
+    <span class="toggle-contenido" *ngIf="esLargo() && !expandido && !editando" (click)="toggleExpandido()">Mostrar más</span>
+    <span class="toggle-contenido" *ngIf="esLargo() && expandido && !editando" (click)="toggleExpandido()">Mostrar menos</span>
+
+    <textarea id="nuevo-contenido" *ngIf="editando" [(ngModel)]="valorInicial" class="input-predeterminado" (input)="validarContenido(valorInicial)"></textarea>
+
+    <div id="contenedor-acciones">
+      <button class="editar boton-accion" *ngIf="comentario?.usuario_id === loginService.getUsuarioId() && !editando" (click)="toggleEditando()">Editar</button>
+      <button class="eliminar boton-accion" *ngIf="(comentario?.usuario_id === loginService.getUsuarioId() || (loginService.isAdmin() && noticia?.autor_id === loginService.getUsuarioId())) && !editando" (click)="toggleEliminando()">Eliminar</button>
+      
+      <button class="editar boton-accion" *ngIf="editando" (click)="editar()" [disabled]="contenidoInvalido">Confirmar</button>
+      <button class="boton-cancelar boton-accion" *ngIf="editando" (click)="toggleEditando()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="eliminando" class="fondo-sombreado"></div>
+
+<div id="ventana-popup-eliminar" class="ventana-popup" *ngIf="eliminando">
+  <div class="ventana-popup-seccion-superior">
+    <div class="contenedor-titulo-popup">
+      <h3>Eliminar comentario</h3>
+    </div>
+    <div class="contenedor-cerrar">
+      <a (mouseenter)="cursorEncimaCerrar = true" (mouseleave)="cursorEncimaCerrar = false" (click)="toggleEliminando()">
+        <img alt="Cerrar" class="icono-cerrar" src="iconocerrar.png" *ngIf="!cursorEncimaCerrar">
+        <img alt="Cerrar seleccionado" class="icono-cerrar" src="iconocerrarhover.png" *ngIf="cursorEncimaCerrar">
+      </a>
+    </div>
+  </div>
+  <div class="ventana-popup-seccion-inferior">
+    <p>¿Seguro que querés eliminar el comentario?</p>
+    <div class="contenedor-botones-en-linea">
+      <button id="boton-eliminar" class="boton-rojo" (click)="eliminar()">ELIMINAR</button>
+      <button id="boton-cancelar" class="boton-normal" (click)="toggleEliminando()">Cancelar</button>
+    </div>
+  </div>
+</div>

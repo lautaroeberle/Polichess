@@ -1,0 +1,105 @@
+<div class="recuadro-blanco recuadro-no-scroll">
+  <div class="contenedor-imagen-izquierda">
+    <div class="contenedor-atras" (click)="volver()">
+      <span>&#8592; Atrás</span>
+    </div>
+
+    <img class="imagen-izquierda" alt="Imagen de torneo" src="torneo.png">
+    <div class="contenedor-titulo">
+      <h2 class="titulo">Crear torneo</h2>
+    </div>
+  </div>
+
+  <form class="contenedor-estadisticas contenedor-estadisticas-no-padding" (submit)="crearTorneo()" [formGroup]="formulario" style="align-items: center;">
+    <input id="nombre" type="text" name="nombre" placeholder="Nombre" required style="width: calc(100% - 30px);">
+    <textarea id="descripcion" name="descripcion" placeholder="Descripción (opcional)" rows="5" [limitLineBreak]="this.maxLineas" style="width: calc(100% - 30px);"></textarea>
+
+    <div class="contenedor-en-linea">
+      <div class="contenedor-vertical">
+
+        <div class="contenedor-en-linea">
+          <label for="ritmo">Ritmo: </label>
+          <select id="ritmo" name="ritmo" required>
+            <option>Estándar</option>
+            <option>Rápido</option>
+            <option>Blitz</option>
+          </select>
+        </div>
+
+        <div class="contenedor-en-linea">
+          <label for="cantidad-rondas">Cantidad de rondas: </label>
+          <select id="cantidad-rondas" name="cantidad-rondas" formControlName="cantidadRondas">
+            <option *ngFor="let ronda of this.rondas">{{ ronda }}</option>
+          </select>
+        </div>
+
+        <div class="contenedor-en-linea">
+          <label for="fecha-inicio">Fecha de inicio: </label>
+          <input id="fecha-inicio" name="fecha-inicio" type="date" formControlName="fecha" [min]="minDate" [max]="maxDate" required style="padding: 7.5px;">
+        </div>
+        <span id="error" *ngIf="fecha?.hasError('fechaInvalida')">La fecha seleccionada está fuera del rango permitido</span>
+
+    
+
+      </div>
+
+      <div class="contenedor-vertical">
+        <div class="contenedor-en-linea">
+          <label for="sistema-emparejamiento">Emparejamiento: </label>
+          <select id="sistema-emparejamiento" name="sistema-emparejamiento" required formControlName="sistemaEmparejamiento">
+            <option value="Suizo">Suizo</option>
+            <option value="Todos contra todos">Todos contra todos</option>
+            <option value="Todos contra todos (ida y vuelta)">TCT ida y vuelta</option>
+          </select>
+        </div>
+
+        <div class="contenedor-en-linea">
+          <label for="intervalo-rondas">Días entre rondas: </label>
+          <select id="intervalo-rondas" name="intervalo-rondas">
+            <option *ngFor="let intervalo of this.intervalos">{{ intervalo }}</option>
+          </select>
+        </div>
+
+        <div class="contenedor-en-linea">
+          <label for="hora-rondas">Hora de inicio de rondas: </label>
+          <input id="hora-rondas" name="hora-rondas" type="time" required style="padding: 7.5px;">
+        </div>
+
+        
+
+      </div>
+    </div>
+    <div class="contenedor-en-linea" style="margin-top: 20px;">
+  <div class="contenedor-vertical">
+    <div class="contenedor-en-linea">
+      <label for="minimo-jugadores">Mínimo jugadores:</label>
+      <input id="minimo-jugadores" name="minimo-jugadores" type="number" min="0" style="width: 80px; padding: 7.5px;">
+    </div>
+
+    <div class="contenedor-en-linea">
+      <label for="maximo-jugadores">Máximo jugadores:</label>
+      <input id="maximo-jugadores" name="maximo-jugadores" type="number" min="0" style="width: 80px; padding: 7.5px;">
+    </div>
+  </div>
+
+  <div class="contenedor-vertical" style="margin-left: 40px;">
+    <div class="contenedor-en-linea">
+      <label for="minimo-elo">Mínimo ELO:</label>
+      <input id="minimo-elo" name="minimo-elo" type="number" min="0" style="width: 80px; padding: 7.5px;">
+    </div>
+
+    <div class="contenedor-en-linea">
+      <label for="maximo-elo">Máximo ELO:</label>
+      <input id="maximo-elo" name="maximo-elo" type="number" min="0" style="width: 80px; padding: 7.5px;">
+    </div>
+  </div>
+</div>
+
+
+    <div id="contenedor-crear">
+      <button id="crear-torneo" class="ver-mas" type="submit">CREAR TORNEO</button>
+    </div>
+
+    
+  </form>
+</div>

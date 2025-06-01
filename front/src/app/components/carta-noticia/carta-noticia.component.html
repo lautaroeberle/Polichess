@@ -1,0 +1,9 @@
+<a class="recuadro-blanco">
+  <div class="card-img-top-container">
+    <img [src]="'http://localhost:3000'+noticia.imagen" class="card-img-top" alt="{{ noticia.titulo }}">
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">{{ noticia.titulo }}</h4>
+    <p class="card-date"><small class="text-muted">{{ autorNombre }} • {{ formatearFecha(noticia.createdAt) }}</small></p>
+  </div>
+</a>

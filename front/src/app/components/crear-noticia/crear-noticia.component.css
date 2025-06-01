@@ -1,0 +1,49 @@
+.contenedor-imagen-izquierda {
+  width: 40%;
+}
+
+.imagen-izquierda {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--azul-poli);
+  border-radius: 7.5px;
+}
+
+.contenedor-titulo label {
+  text-align: center;
+}
+
+.contenedor-titulo a {
+  background-color: red;
+  border-radius: 5px;
+  padding: 5px 6.5px 4.5px 6.5px;
+}
+
+.contenedor-titulo a:hover {
+  background-color: rgb(200, 0, 0);
+  cursor: pointer;
+}
+
+#borrar-seleccion {
+  z-index: 1000;
+}
+
+#cambiar-imagen {
+  color: var(--azul-poli);
+  cursor: pointer;
+  font-family: var(--fuente-texto);
+  font-size: 25px;
+}
+
+#cambiar-imagen:hover {
+  text-decoration: underline;
+}
+
+#contenedor-crear {
+  display: flex;
+  justify-content: center;
+}
+
+#crear-noticia {
+  box-shadow: none;
+  margin-top: 25px;
+}

@@ -1,0 +1,52 @@
+<main>
+  <div id="contenedor-bienvenida">
+    <img alt="Logo" id="logo" src="logo.png">
+    <div id="texto-bienvenida">
+      <h1>PoliChess</h1>
+      <h2>Todo sobre el ajedrez del Poli en un solo lugar</h2>
+    </div>
+  </div>
+  <div id="contenedor-ver-mas">
+    <button class="ver-mas" (click)="verMas()">VER MÁS &#9660;</button>
+  </div>
+</main>
+
+<section id="noticias" class="recuadro-blanco">
+  <h2> <a [routerLink]="['/noticias']">Noticias destacadas</a></h2>
+  
+  <div class="carousel">
+    <div class="carousel-track">
+      <div *ngFor="let noticia of noticias" class="carousel-item">
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.contenido | slice:0:100 }}...</p>
+        <a [routerLink]="['/noticias', noticia.id]">Leer más</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jugadores" class="recuadro-blanco">
+   <h2> <a [routerLink]="['/usuarios']">Jugadores destacados</a></h2>
+  <div class="carousel">
+    <div class="carousel-track">
+      <div *ngFor="let usuario of usuarios" class="carousel-item">
+        <h3>{{ usuario.nombre_usuario }}</h3>
+        <p>{{ usuario.nombre }} {{ usuario.apellido }}</p>
+        <a [routerLink]="['/usuarios', usuario.id]">Ver perfil</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="torneos" class="recuadro-blanco">
+   <h2> <a [routerLink]="['/torneos']">Torneos</a></h2>
+  <div class="carousel">
+    <div class="carousel-track">
+      <div *ngFor="let torneo of torneos" class="carousel-item">
+        <h3>{{ torneo.nombre }}</h3>
+        <p>{{ torneo.fecha | date }}</p>
+        <a [routerLink]="['/torneos', torneo.id]">Ver detalles</a>
+      </div>
+    </div>
+  </div>
+</section>

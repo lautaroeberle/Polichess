@@ -1,0 +1,56 @@
+.torneo-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin: 1rem 0;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.torneo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.icono-torneo {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background-color: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #777;
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.info p {
+  margin: 0.15rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+:host-context(app-torneo-detalle) .torneo-card {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+.torneos-lista {
+  margin-top: 100px; /* Ajusta según la altura real de tu navbar */
+  padding: 0 1rem;
+}

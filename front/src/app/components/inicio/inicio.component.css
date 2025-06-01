@@ -1,0 +1,147 @@
+main {
+  height: calc(100vh - 104px);
+}
+
+#contenedor-bienvenida {
+  align-items: center;
+  display: flex;
+  margin-top: 104px;
+  height: calc(80vh - 104px);
+}
+
+#logo {
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+  width: 25%;
+}
+
+#texto-bienvenida {
+  margin-right: 10%;
+  width: 50%;
+}
+
+#texto-bienvenida h1 {
+  font-family: var(--fuente-titulos);
+  font-size: 500%;
+}
+
+#texto-bienvenida h2 {
+  font-family: var(--fuente-subtitulos);
+  font-size: 250%;
+  font-weight: normal;
+}
+
+#contenedor-ver-mas {
+  align-items: center;
+  display: flex;
+  height: 10%;
+  justify-content: center;
+  margin-bottom: 10%;
+}
+
+@media (max-height: 650px) {
+  main {
+    height: 520px;
+  }
+
+  #contenedor-bienvenida {
+    height: 80%;
+  }
+
+  #contenedor-ver-mas {
+    height: 10%;
+  }
+}
+
+@media (max-width: 1049px) {
+  #texto-bienvenida h1 {
+    font-size: 400%;
+  }
+
+  #texto-bienvenida h2 {
+    font-size: 200%;
+  }
+}
+
+@media (max-width: 849px) {
+  #contenedor-bienvenida {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #logo {
+    margin: 0;
+    height: 200px;
+    width: auto;
+  }
+
+  #texto-bienvenida {
+    margin-left: 10%;
+    text-align: center;
+    width: 80%;
+  }
+}
+/* ... tus estilos anteriores ... */
+
+.recuadro-blanco {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin: 3rem 5%;
+}
+
+.recuadro-blanco h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 1rem;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+}
+
+h2 a {
+  text-decoration: none;
+  color: inherit; /* Hereda el color del h2 */
+  transition: color 0.3s ease;
+}
+
+h2 a:hover {
+  color: #444; /* Un color apenas más oscuro en hover */
+}
+
+
+.carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-width: 250px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: translateY(-4px);
+}
+
+.carousel-item h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.carousel-item a {
+  margin-top: 0.5rem;
+  display: inline-block;
+  color: #0066cc;
+  font-weight: bold;
+}

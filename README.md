@@ -1,6 +1,6 @@
 # ♟ PoliChess
 
-**PoliChess** is a web platform designed to help educational institutions organize chess tournaments and manage player participation easily. Built with Angular and Node.js, this system allows administrators to create news, register tournaments, and view student sign-ups. Students (players) can register, log in, and enroll in tournaments through a clean and intuitive interface.
+**PoliChess** is a web platform originally developed for my high school to manage chess tournaments and student participation efficiently. While it was tailored to meet the needs of my school, PoliChess can also be used by other institutions that wish to organize and manage their own chess competitions. Built with Angular and Node.js, this system allows administrators to create news, register tournaments, and view student sign-ups. Students (players) can register, log in, and enroll in tournaments through a clean and intuitive interface.
 
 ---
 
@@ -41,10 +41,10 @@
 
 ## 🎯 Purpose
 
-PoliChess was developed to support schools or educational institutions that run chess tournaments. The system gives staff a way to:
+PoliChess was originally created for my high school as a solution to organize internal chess tournaments and manage student participation. The platform gives tournament coordinators a simple way to:
 - Create and manage tournaments
 - Monitor which students sign up
-- Share news related to chess events
+- Share news and updates about school chess events
 
 Students can register themselves, see upcoming events, and sign up to participate.
 
@@ -77,7 +77,6 @@ Inside the back folder, modify the environment infomation of the files ".env.dev
 DB_NAME=your_database_name
 DB_USER=your_mysql_user
 DB_PASSWORD=your_mysql_password
-// Info must be in quotes ""
 
 ### 4. Run the project
 
